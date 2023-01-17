@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-json5",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin for allowing .json5 and .jsonc files to be loaded.",
   "keywords": [
     "vite",
@@ -9,7 +9,7 @@
     "jsonc",
     "json"
   ],
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "author": "Tim van Herwijnen",
   "license": "MIT",
   "scripts": {
