@@ -1,8 +1,8 @@
 {
-  "type": "module",
   "name": "vite-plugin-json5",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Plugin for allowing .json5 and .jsonc files to be loaded.",
+  "type": "module",
   "keywords": [
     "vite",
     "vite-plugin",
@@ -10,11 +10,18 @@
     "jsonc",
     "json"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
   "main": "src/index.ts",
   "author": "Tim van Herwijnen",
   "license": "MIT",
   "scripts": {
-    "lintfix": "eslint src/** --ext \".js\" --ignore-path .gitignore --fix"
+    "lintfix": "eslint src/** --ext \".js\" --ignore-path .gitignore --fix",
+    "build": "tsup"
   },
   "dependencies": {
     "json5": "^2.2.3"
@@ -24,6 +31,8 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0"
+    "eslint-plugin-promise": "^6.0.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
   }
 }
