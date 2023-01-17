@@ -1,8 +1,28 @@
 {
   "name": "vite-plugin-json5",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Plugin for allowing .json5 and .jsonc files to be loaded.",
+  "author": {
+    "name": "Tim van Herwijnen",
+    "url": "https://github.com/timyourivh"
+  },
   "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "lintfix": "eslint src/** --ext \".js\" --ignore-path .gitignore --fix",
+    "build": "tsup"
+  },
   "keywords": [
     "vite",
     "vite-plugin",
@@ -10,18 +30,12 @@
     "jsonc",
     "json"
   ],
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Modyfi/vite-plugin-yaml"
   },
-  "main": "src/index.ts",
-  "author": "Tim van Herwijnen",
-  "license": "MIT",
-  "scripts": {
-    "lintfix": "eslint src/** --ext \".js\" --ignore-path .gitignore --fix",
-    "build": "tsup"
+  "peerDependencies": {
+    "vite": "^2.6.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
     "json5": "^2.2.3"
