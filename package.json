@@ -1,0 +1,20 @@
+{
+  "name": "vite-plugin-json5",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "author": "Tim van Herwijnen",
+  "license": "MIT",
+  "scripts": {
+    "lintfix": "eslint src/** --ext \".js\" --ignore-path .gitignore --fix"
+  },
+  "dependencies": {
+    "json5": "^2.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0"
+  }
+}
