@@ -1,6 +1,7 @@
 {
+  "type": "module",
   "name": "vite-plugin-json5",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plugin for allowing .json5 and .jsonc files to be loaded.",
   "keywords": [
     "vite",
