@@ -1,7 +1,8 @@
 import JSON5 from 'json5'
+import type { Plugin } from 'vite'
 const fileRegex = /\.(jsonc|json5)$/
 
-export default function json5Plugin () {
+export default function json5Plugin (): Plugin {
   return {
     name: 'vite:parse-json5',
 
