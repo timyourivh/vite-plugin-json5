@@ -1,6 +1,6 @@
-import JSON5 from "json5";
-import type { Plugin } from "vite";
-import { dataToEsm } from "@rollup/pluginutils";
+import JSON5 from 'json5';
+import type { Plugin } from 'vite';
+import { dataToEsm } from '@rollup/pluginutils';
 const fileRegex = /\.(jsonc|json5)$/;
 
 export interface Json5Options {
@@ -10,7 +10,7 @@ export interface Json5Options {
    */
   namedExports?: boolean;
   /**
-   * Generate performant output as JSON.parse("stringified").
+   * Generate performant output as JSON.parse('stringified').
    * Enabling this will disable namedExports.
    * @default false
    */
@@ -22,7 +22,7 @@ export default function json5Plugin(
   isBuild: boolean
 ): Plugin {
   return {
-    name: "vite:parse-json5",
+    name: 'vite:parse-json5',
 
     async transform(code: string, id: string) {
       if (fileRegex.test(id)) {
@@ -33,7 +33,7 @@ export default function json5Plugin(
             code: `export default JSON.parse(${JSON.stringify(
               JSON.stringify(JSON5.parse(code))
             )})`,
-            map: { mappings: "" },
+            map: { mappings: '' },
           };
         }
 
@@ -44,7 +44,7 @@ export default function json5Plugin(
               preferConst: true,
               namedExports: options.namedExports,
             }),
-            map: { mappings: "" },
+            map: { mappings: '' },
           };
         } catch (e) {
           this.error(`Failed to parse JSON file.`);
