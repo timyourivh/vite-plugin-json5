@@ -7,12 +7,6 @@
     "url": "https://github.com/timyourivh"
   },
   "type": "module",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    }
-  },
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
@@ -20,7 +14,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lintfix": "eslint src/** --ext \".js\" --ignore-path .gitignore --fix",
+    "lintfix": "eslint src/** --ignore-path .gitignore --fix",
     "build": "tsc"
   },
   "keywords": [
