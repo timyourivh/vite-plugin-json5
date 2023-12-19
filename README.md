@@ -37,7 +37,7 @@ These will be parsed by the json5 package and turned into a regular js that the 
 
 #### Options ⚙
 
-This plugin accepts the same options as the default:
+This plugin accepts the same options as the default json handler:
 
 ```ts
 interface Json5Options {
