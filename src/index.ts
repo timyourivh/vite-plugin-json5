@@ -17,23 +17,22 @@ export interface Json5Options {
   stringify?: boolean
 }
 
-export default function json5Plugin(
-  options: Json5Options = {},
-  isBuild: boolean
+export default function json5Plugin (
+  options: Json5Options = {}
 ): Plugin {
   return {
     name: 'vite:parse-json5',
 
     async transform (code: string, id: string) {
       if (fileRegex.test(id)) {
-        if (options.stringify) {
+        if (options.stringify === true) {
           return {
             // during build, parse then double-stringify to remove all
             // unnecessary whitespaces to reduce bundle size.
             code: `export default JSON.parse(${JSON.stringify(
               JSON.stringify(JSON5.parse(code))
             )})`,
-            map: { mappings: '' },
+            map: { mappings: '' }
           }
         }
 
@@ -42,15 +41,15 @@ export default function json5Plugin(
           return {
             code: dataToEsm(parsed, {
               preferConst: true,
-              namedExports: options.namedExports,
+              namedExports: options.namedExports
             }),
-            map: { mappings: '' },
+            map: { mappings: '' }
           }
         } catch (e) {
-          this.error(`Failed to parse JSON file.`)
+          this.error('Failed to parse JSON file.')
         }
       }
-      return null;
+      return null
     }
   }
 }
