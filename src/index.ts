@@ -2,17 +2,21 @@ import JSON5 from 'json5'
 import type { Plugin, JsonOptions } from 'vite'
 import { dataToEsm } from '@rollup/pluginutils'
 
-// Custom json filter for vite
+// Custom JSON filter for Vite
 const json5ExtRE = /\.(jsonc|json5)$/
 
 export interface Json5Options extends JsonOptions {}
 
-export function json5Plugin (
-  options: Json5Options = {},
-  isBuild: boolean
-): Plugin {
+export default function (options: Json5Options = {}): Plugin {
+  let isBuild = false // This will be set based on the Vite mode
+
   return {
     name: 'vite:json5',
+
+    configResolved (config) {
+      // Determine if this is the build phase based on the resolved config
+      isBuild = config.command === 'build'
+    },
 
     transform (json, id) {
       if (!json5ExtRE.test(id)) return null
@@ -25,28 +29,30 @@ export function json5Plugin (
           json = JSON.stringify(parsed)
 
           if (isBuild) {
+            // During build, parse then double-stringify to remove all
+            // unnecessary whitespaces to reduce bundle size.
             return {
-              // during build, parse then double-stringify to remove all
-              // unnecessary whitespaces to reduce bundle size.
-              code: `export default JSON.parse(${JSON.stringify(
-                JSON.stringify(JSON.parse(json))
-              )})`,
+              code: `export default JSON.parse(${JSON.stringify(json)})`,
               map: { mappings: '' }
             }
           } else {
-            return `export default JSON.parse(${JSON.stringify(json)})`
+            // For serve, return the stringified result for the browser to parse
+            return {
+              code: `export default JSON.parse(${JSON.stringify(json)})`,
+              map: null
+            }
           }
         }
 
+        // Convert the parsed JSON5 data to an ES module export
         return {
           code: dataToEsm(parsed, {
-            preferConst: true,
             namedExports: options.namedExports
           }),
           map: { mappings: '' }
         }
       } catch (e) {
-        const error = e as Error
+        const error = e instanceof Error ? e : new Error(String(e))
         this.error(error.message)
       }
     }
