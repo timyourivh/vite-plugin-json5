@@ -25,6 +25,8 @@ npm install -D vite-plugin-json5
 // vite.config.js
 
 import json5Plugin from 'vite-plugin-json5'
+// or
+import { json5Plugin } from 'vite-plugin-json5'
 
 export default defineConfig({
   json5Plugin()

@@ -7,8 +7,10 @@ const json5ExtRE = /\.(jsonc|json5)$/
 
 export interface Json5Options extends JsonOptions {}
 
-export default function (options: Json5Options = {}): Plugin {
-  let isBuild = false // This will be set based on the Vite mode
+export function json5Plugin (
+  options: Json5Options = {}
+): Plugin {
+  let isBuild = false
 
   return {
     name: 'vite:json5',
@@ -58,3 +60,5 @@ export default function (options: Json5Options = {}): Plugin {
     }
   }
 }
+
+export default json5Plugin
